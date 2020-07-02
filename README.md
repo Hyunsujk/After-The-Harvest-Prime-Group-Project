@@ -1,8 +1,9 @@
 # After the Harvest Weekly Gleaning Report
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+The Weekly Gleaning Report App was built to streamline the creation of reports that help to direct field supervisors overseeing gleaning events for After the Harvest. The Kansas City nonprofit organization After the Harvest schedules volunteers to glean food from local farm fields that are distributed to local pantries. Gleaning is the process of hand-picking produce that has been left in a field after the harvest; the produce is a viable food source that otherwise would be left in the field instead of providing wholesome produce to the targeted consumer. These flexible reports bring together relevant data from After the Harvest saving time and effort for the staff.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+This app uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+
 
 ## Download (Don't Clone) This Repository
 
@@ -18,19 +19,15 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
+## Google API Setup Instructions
+Google API access depends on having a Gmail account. If you have a Google account, go to console.developers.google.com and create a new project. Give it a title, and click "Create" to create a Google app. The user type should be configured as internal, (unless you have a GSuite account, in which case you can create an internal application.) You will need to enable the Google Docs API from the API Library with permission to read and write files, and extend scope to include access to Google Docs. From the developer console, Clicking on "Create Credentials" will give you access to Client ID, Client Secret, and API key. From this page, you should also define authorized JS origins and authorized redirect URLs. Our project uses a localhost port for both, and we recommend using http://localhost:3000.
+ 
+Once you have established a client ID and client secret, create a .env file at the root of your project. Your client ID should be entered into your .env file as:
+ 
+REACT_APP_CLIENT_ID= Your client ID
+REACT_APP_CLIENT_SECRET= Your client secret
 
-Create a new database called `prime_app` and create a `user` table:
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
-
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
 
@@ -44,6 +41,7 @@ If you would like to name your database something else, you will need to change 
 - Run `npm run server`
 - Run `npm run client`
 - Navigate to `localhost:3000`
+
 
 ## Debugging
 
